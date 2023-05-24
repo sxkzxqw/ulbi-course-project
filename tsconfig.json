@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/", // куда производится сборка
+        "noImplicitAny": true, // запрещает или разрешает указывать переменные без определенного типа
+        "module": "ES2022", // модульная система
+        "target": "ES5", // код компилируется в es5
+        "jsx": "react-jsx", // разрешает jsx файлы
+        "allowJs": true, // разрешает js
+        "moduleResolution": "node", // определяет то какие импорты будут, node или classic
+        "esModuleInterop": true, // позволяет работать с пакетами через импорт, а не require
+        "allowSyntheticDefaultImports": true, // позволяет поддерживать import default и использовать импорты без * as All
+        "baseUrl": ".", // для абсолютных путей
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    }
+}
