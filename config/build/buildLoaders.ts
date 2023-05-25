@@ -4,6 +4,23 @@ import { BuildOptions } from './types/config';
 
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
+    // svg
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    // jpeg + gif + png + fonts in format woff or woff2
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    }
+
+    // css + sass + css modules
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
@@ -23,6 +40,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         ]
     }
 
+    // ts
     const typeScriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -32,5 +50,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     return [
         typeScriptLoader,
         cssLoader,
+        fileLoader,
+        svgLoader
     ]
 }

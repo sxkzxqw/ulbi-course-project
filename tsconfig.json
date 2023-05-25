@@ -10,6 +10,11 @@
         "esModuleInterop": true, // позволяет работать с пакетами через импорт, а не require
         "allowSyntheticDefaultImports": true, // позволяет поддерживать import default и использовать импорты без * as All
         "baseUrl": ".", // для абсолютных путей
+        "paths": {
+            "*": [
+                "./src/*"
+            ],
+        },
     },
     "ts-node": {
         "compilerOptions": {
