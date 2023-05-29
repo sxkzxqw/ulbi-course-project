@@ -1,13 +1,13 @@
-.sidebar {
+.Sidebar {
     height: calc(100vh - var(--navbar-height));
     width: var(--sidebar-width);
     background: var(--inverted-bg-color);
     position: relative;
-    transition: width .25s;
+    transition: width 0.3s;
 }
 
 .collapsed {
-    width: var(--sidebar-width-colapsed);
+    width: var(--sidebar-width-collapsed);
 }
 
 .switchers {
@@ -18,6 +18,6 @@
     width: 100%;
 }
 
-.languages {
+.lang {
     margin-left: 20px;
 }

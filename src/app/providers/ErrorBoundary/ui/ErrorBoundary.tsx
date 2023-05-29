@@ -1,7 +1,5 @@
-import React, { ErrorInfo, ReactNode, Suspense } from "react";
-import { withTranslation } from "react-i18next";
-import { PageLoader } from "shared/ui/PageLoader/PageLoader";
-import PageError from "widgets/PageError/ui/PageError";
+import React, { ErrorInfo, ReactNode, Suspense } from 'react';
+import { ErrorPage } from 'widgets/ErrorPage/ui/ErrorPage';
 
 interface ErrorBoundaryProps {
     children: ReactNode;
@@ -11,7 +9,8 @@ interface ErrorBoundaryState {
     hasError: boolean;
 }
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary
+    extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProps) {
         super(props);
         this.state = { hasError: false };
@@ -22,23 +21,26 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         return { hasError: true };
     }
 
-    componentDidCatch(error: Error, info: ErrorInfo) {
+    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         // You can also log the error to an error reporting service
-        console.log(error, info);
+        console.log(error, errorInfo);
     }
 
     render() {
         const { hasError } = this.state;
         const { children } = this.props;
-        if (this.state.hasError) {
+
+        if (hasError) {
             // You can render any custom fallback UI
-            return (<Suspense fallback={<PageLoader />}>
-                <PageError />
-            </Suspense>);
+            return (
+                <Suspense fallback="">
+                    <ErrorPage />
+                </Suspense>
+            );
         }
 
         return children;
     }
 }
 
-export default withTranslation;
+export default ErrorBoundary;

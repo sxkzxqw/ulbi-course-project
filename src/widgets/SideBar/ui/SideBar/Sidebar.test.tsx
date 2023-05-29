@@ -1,21 +1,20 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { SideBar } from './SideBar';
-import React from 'react';
-import { withTranslation } from "react-i18next";
-import { renderWithTranslation } from '../../../../shared/lib/tests/renderWithTranslation/renderWithTranslation';
-
+import { fireEvent, screen } from '@testing-library/react';
+import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar';
+import {
+    renderWithTranslation,
+} from 'shared/lib/tests/renderWithTranslation/renderWithTranslation';
 
 describe('Sidebar', () => {
-    test('test sidebar render', () => {
-        renderWithTranslation(<SideBar />)
+    test('with only first param', () => {
+        renderWithTranslation(<Sidebar />);
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     });
 
-    test('test sidebar render', () => {
-        renderWithTranslation(<SideBar />)
-        const toggleButton = screen.getByTestId('toggleSidebarButton');
+    test('test toggle', () => {
+        renderWithTranslation(<Sidebar />);
+        const toggleBtn = screen.getByTestId('sidebar-toggle');
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
-        fireEvent.click(toggleButton);
+        fireEvent.click(toggleBtn);
         expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
     });
 });

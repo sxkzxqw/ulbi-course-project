@@ -1,27 +1,15 @@
-import React from 'react';
-import styles from './Loader.module.scss';
+import { classNames } from 'shared/lib/classNames/classNames';
+import './Loader.scss';
 
-const Loader = () => {
-    return (
-        <div className={styles.lds_roller}>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-        </div>
-    );
-};
+interface LoaderProps {
+    className?: string;
+}
 
-export default Loader;
+export const Loader = ({ className }: LoaderProps) => (
+    <div className={classNames('lds-ellipsis', {}, [className])}>
+        <div />
+        <div />
+        <div />
+        <div />
+    </div>
+);
