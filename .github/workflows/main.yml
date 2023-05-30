@@ -1,4 +1,4 @@
-name: testing and building
+name: testing, building
 on:
   push:
     branches: [ main ]
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install modules
-        run: npm install --force
+        run: npm install
       - name: build production project
         run: npm run build:prod
       - name: unit testing
