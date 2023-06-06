@@ -59,14 +59,13 @@ const Modal = (props: ModalProps) => {
     const mods: Record<string, boolean> = {
         [styles.opened]: isOpen,
         [styles.isClosing]: isClosing,
-        [styles[theme]]: true,
     }
 
     const element = document.getElementById('modal');
 
     return (
         <Portal element={element}>
-            <div className={classNames(styles.modal, mods, [className])}>
+            <div className={classNames(styles.modal, mods, [className, theme])}>
                 <div className={styles.overlay} onClick={closeHandler}>
                     <div className={styles.content} onClick={onContentClick}>
                         {children}
