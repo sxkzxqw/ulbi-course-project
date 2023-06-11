@@ -6,6 +6,7 @@ import { Button } from 'shared/ui/Button/Button';
 import Modal from 'shared/ui/Modal/Modal';
 import { useCallback, useState } from 'react';
 import { ThemeButton } from '../../../shared/ui/Button/Button';
+import { LoginModal } from 'features/AuthByUsername';
 
 interface NavbarProps {
     className?: string;
@@ -23,7 +24,7 @@ export const Navbar = ({ className }: NavbarProps) => {
             <Button className={cls.links} theme={ThemeButton.CLEAR_INVERTED} onClick={onToggleModal}>
                 {t('Войти')}
             </Button>
-            <Modal isOpen={isOpen} onClose={onToggleModal}>Lorem*10fsememkfsemkfmemskfkmsmkemkfmeskmfkkm feksm fkmeskm kmesm kmkfsekmfkme smkmkf mksemkmk emksmk kmsekmfe</Modal>
+            <LoginModal isOpen={isOpen} onClose={onToggleModal} />
         </div>
     );
 };
