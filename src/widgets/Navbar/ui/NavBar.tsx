@@ -7,24 +7,41 @@ import Modal from 'shared/ui/Modal/Modal';
 import { useCallback, useState } from 'react';
 import { ThemeButton } from '../../../shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthData, userActions } from 'entities/User';
 
 interface NavbarProps {
     className?: string;
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
+    const dispatch = useDispatch();
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
+    const authData = useSelector(getUserAuthData);
+
     const onToggleModal = useCallback(() => {
         setIsOpen((prev) => !prev);
+    }, [])
+    const onLogout = useCallback(() => {
+        dispatch(userActions.logout())
     }, [])
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <Button className={cls.links} theme={ThemeButton.CLEAR_INVERTED} onClick={onToggleModal}>
-                {t('Войти')}
-            </Button>
-            <LoginModal isOpen={isOpen} onClose={onToggleModal} />
+            {authData
+                ? <>
+                    <Button className={cls.links} theme={ThemeButton.CLEAR_INVERTED} onClick={onLogout}>
+                        {t('Выйти')}
+                    </Button>
+                </>
+                : <>
+                    <Button className={cls.links} theme={ThemeButton.CLEAR_INVERTED} onClick={onToggleModal}>
+                        {t('Войти')}
+                    </Button>
+                    <LoginModal isOpen={isOpen} onClose={onToggleModal} />
+                </>
+            }
         </div>
     );
 };
